@@ -25,8 +25,34 @@ public class ProdutosDAO {
     public void cadastrarProduto (ProdutosDTO produto){
         
         
-        //conn = new conectaDAO().connectDB();
+    String sql = "INSERT INTO produtos (nome, valor, status) VALUES (?, ?, ?)";
         
+        try {
+            conn = new conectaDAO().connectDB();
+            prep = conn.prepareStatement(sql);
+            prep.setString(1, produto.getNome());
+            prep.setDouble(2, produto.getValor());
+            prep.setString(3, produto.getStatus());
+            
+            prep.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
+            
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "ProdutosDAO Cadastrar: " + erro.getMessage());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();  // Fechar a conexão
+                }
+                if (prep != null) {
+                    prep.close();  // Fechar o PreparedStatement
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro ao fechar a conexão: " + e.getMessage());
+            }
+        }
+    
+    
         
     }
     
