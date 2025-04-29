@@ -28,6 +28,7 @@ public class vendasVIEW extends javax.swing.JFrame {
 
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVoltarActionPerformed(evt);
             }
@@ -66,7 +67,7 @@ public class vendasVIEW extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null); // Centralizar a janela
+        setLocationRelativeTo(null);
     }
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,14 +91,13 @@ public class vendasVIEW extends javax.swing.JFrame {
                 });
             }
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
-    // Variables declaration - do not modify
+  
     private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaVendas;
-    // End of variables declaration
+
 }
