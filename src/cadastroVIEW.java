@@ -160,7 +160,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
             return;
         }
 
-        int valor = Integer.parseInt(valorTexto); // agora é seguro converter
+        Double valor = Double.parseDouble(valorTexto); // agora é seguro converter
         String status = "A Venda";
 
         produto.setNome(nome);

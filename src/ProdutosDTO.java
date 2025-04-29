@@ -1,7 +1,7 @@
 public class ProdutosDTO {
     private Integer id;
     private String nome;
-    private Integer valor;
+private Double valor;
     private String status;
 
     // Construtor vazio (PRECISA ter)
@@ -9,7 +9,7 @@ public class ProdutosDTO {
     }
 
     // Construtor completo (opcional, se quiser usar)
-    public ProdutosDTO(Integer id, String nome, Integer valor, String status) {
+    public ProdutosDTO(Integer id, String nome, Double valor, String status) {
         this.id = id;
         this.nome = nome;
         this.valor = valor;
@@ -33,11 +33,11 @@ public class ProdutosDTO {
         this.nome = nome;
     }
 
-    public Integer getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(Integer valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 

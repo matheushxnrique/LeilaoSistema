@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -136,12 +137,33 @@ public class listagemVIEW extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-        String id = id_produto_venda.getText();
+                                       
+String id = id_produto_venda.getText();  // Pega o ID inserido no campo de texto
+
+    if (id.isEmpty()) {  // Verifica se o ID está vazio
+        JOptionPane.showMessageDialog(null, "Por favor, insira um ID válido.");
+        return;  // Sai do método se o ID estiver vazio
+    }
+    
+    try {
+        // Tenta converter o ID para um número inteiro
+        int produtoId = Integer.parseInt(id);
         
-        ProdutosDAO produtosdao = new ProdutosDAO();
+        ProdutosDAO produtosdao = new ProdutosDAO();  // Instancia a classe ProdutosDAO
         
-        //produtosdao.venderProduto(Integer.parseInt(id));
+        // Chama o método para vender o produto com o ID fornecido
+        produtosdao.venderProduto(produtoId);
+        
+        // Atualiza a lista de produtos após a venda
         listarProdutos();
+        
+        JOptionPane.showMessageDialog(null, "Produto vendido com sucesso!");
+    } catch (NumberFormatException e) {
+        // Se o ID não for um número válido, exibe uma mensagem de erro
+        JOptionPane.showMessageDialog(null, "ID inválido! Por favor, insira um número válido.");
+    }
+
+
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
