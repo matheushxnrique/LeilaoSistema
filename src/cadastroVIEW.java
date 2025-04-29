@@ -7,7 +7,14 @@
  *
  * @author Adm
  */
+import javax.swing.JOptionPane;
+
+
+
+
+
 public class cadastroVIEW extends javax.swing.JFrame {
+
 
     /**
      * Creates new form cadastroVIEW
@@ -140,17 +147,37 @@ public class cadastroVIEW extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastroNomeActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+                                           
+    try {
         ProdutosDTO produto = new ProdutosDTO();
+        
         String nome = cadastroNome.getText();
-        String valor = cadastroValor.getText();
+        String valorTexto = cadastroValor.getText();
+        
+        if (nome.isEmpty() || valorTexto.isEmpty()) {
+            // Aviso se algum campo estiver vazio
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+            return;
+        }
+
+        int valor = Integer.parseInt(valorTexto); // agora é seguro converter
         String status = "A Venda";
+
         produto.setNome(nome);
-        produto.setValor(Integer.parseInt(valor));
+        produto.setValor(valor);
         produto.setStatus(status);
-        
-        ProdutosDAO produtodao = new ProdutosDAO();
-        produtodao.cadastrarProduto(produto);
-        
+
+        ProdutosDAO dao = new ProdutosDAO();
+        dao.cadastrarProduto(produto);
+
+        JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Digite apenas números no campo Valor.");
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Erro ao cadastrar: " + e.getMessage());
+    }
+
+
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
